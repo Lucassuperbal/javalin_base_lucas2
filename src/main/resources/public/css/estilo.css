@@ -8,3 +8,12 @@ body {
 h1 {
     color: blue;
 }
+table{
+    text-align: center;
+    margin: auto;
+    border: 1px solid;
+}
+.tabela{
+padding: 10px;
+border: 1px solid;
+}

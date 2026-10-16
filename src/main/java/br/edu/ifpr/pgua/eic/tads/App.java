@@ -1,8 +1,9 @@
 package br.edu.ifpr.pgua.eic.tads;
 
 import br.edu.ifpr.pgua.eic.tads.controllers.IndexController;
+import br.edu.ifpr.pgua.eic.tads.controllers.cadastroController;
+import br.edu.ifpr.pgua.eic.tads.models.Gerenciador;
 import br.edu.ifpr.pgua.eic.tads.utils.JavalinUtils;
-import io.javalin.Javalin;
 
 /**
  * Hello world!
@@ -10,13 +11,14 @@ import io.javalin.Javalin;
  */
 public class App {
     public static void main( String[] args ){
-        var app = JavalinUtils.makeApp(8080);
-        
-        IndexController indexController = new IndexController();
+        var app = JavalinUtils.makeApp(8180);
+        Gerenciador gerenciador = new Gerenciador();
+        IndexController indexcontroller = new IndexController();
+        cadastroController cadastrocontroller = new cadastroController(gerenciador);
 
-        
-        app.get("/", indexController.get);
-
-        
+        app.get("/", indexcontroller::get);
+        app.get("/", ctx -> {ctx.result("acolita melhor pesonagem risk of rain2");});
+        app.get("/usuarios/cadastro",cadastrocontroller::get);
+        app.post("/usuarios/cadastro",cadastrocontroller::post);
     }
 }
